@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/ui/Logo";
 import { navLinks } from "@/lib/constants";
 import { gym, links } from "@/lib/gym-data";
 import { cn } from "@/lib/utils";
@@ -38,15 +39,10 @@ export function Header() {
         {/* Wordmark */}
         <a
           href="#top"
-          className="group flex items-baseline gap-2"
+          className="group flex items-center"
           aria-label={`${gym.shortName} — início`}
         >
-          <span className="font-display text-2xl leading-none tracking-wide text-paper sm:text-[1.7rem]">
-            Super<span className="text-accent">Série</span>
-          </span>
-          <span className="hidden font-grotesk text-[0.62rem] uppercase tracking-[0.3em] text-silver sm:inline">
-            Fitness
-          </span>
+          <Logo variant="header" />
         </a>
 
         {/* Desktop nav */}

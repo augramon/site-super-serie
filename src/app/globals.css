@@ -153,6 +153,39 @@
   .min-h-dvh {
     min-height: 100dvh;
   }
+
+  /* Infinite horizontal marquee (two copies translate by -50%) */
+  @keyframes marquee-x {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee-x var(--marquee-duration, 30s) linear infinite;
+    will-change: transform;
+  }
+
+  /* Fade the marquee edges into the background */
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 7%,
+      #000 93%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 7%,
+      #000 93%,
+      transparent
+    );
+  }
 }
 
 /* ============================================================

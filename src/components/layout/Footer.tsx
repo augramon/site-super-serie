@@ -1,6 +1,7 @@
 import { navLinks } from "@/lib/constants";
 import { gym, links } from "@/lib/gym-data";
 import { iconMap } from "@/components/ui/Icons";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   const year = 2025;
@@ -10,10 +11,7 @@ export function Footer() {
         {/* Oversized wordmark */}
         <div className="flex flex-col gap-12 lg:flex-row lg:justify-between">
           <div className="max-w-md">
-            <p className="font-display text-5xl leading-none tracking-wide text-paper sm:text-6xl">
-              Super<span className="text-accent">Série</span>
-              <span className="block text-silver">Fitness</span>
-            </p>
+            <Logo variant="footer" />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-silver">
               Academia em {gym.neighborhood}, {gym.city.replace(" - BA", "")} —
               Bahia. Estrutura, equipamentos e ambiente climatizado para sua

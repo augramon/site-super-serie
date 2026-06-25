@@ -3,13 +3,16 @@
 import { motion } from "framer-motion";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { StarIcon } from "@/components/ui/Icons";
-import { gym, reviewNotes, reviewThemes } from "@/lib/gym-data";
+import { gym, reviews, reviewThemes } from "@/lib/gym-data";
 import { inView, riseItem, staggerParent } from "@/lib/motion";
 
 export function SocialProofSection() {
   const full = Math.floor(Number(gym.rating));
+  // Duplicate the list so the marquee can loop seamlessly (-50% translate).
+  const track = [...reviews, ...reviews];
+
   return (
-    <section className="relative bg-bg py-[var(--section-y)]">
+    <section className="relative overflow-hidden bg-bg py-[var(--section-y)]">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <SectionLabel number="/05" className="mb-12">
           Reputação
@@ -22,7 +25,7 @@ export function SocialProofSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={inView}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-4"
+            className="lg:col-span-5"
           >
             <div className="flex items-end gap-4">
               <span className="font-display text-[7rem] leading-[0.8] text-paper sm:text-[9rem]">
@@ -67,27 +70,68 @@ export function SocialProofSection() {
             </motion.ul>
           </motion.div>
 
-          {/* Notes */}
-          <motion.ul
-            variants={staggerParent(0.1)}
-            initial="hidden"
-            whileInView="visible"
+          {/* Lead */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={inView}
-            className="flex flex-col justify-center gap-px lg:col-span-8"
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="flex flex-col justify-end lg:col-span-7"
           >
-            {reviewNotes.map((note) => (
-              <motion.li
-                key={note}
-                variants={riseItem}
-                className="border-t border-line py-7 last:border-b"
-              >
-                <p className="text-pretty text-xl leading-snug text-paper sm:text-2xl">
-                  {note}
-                </p>
-              </motion.li>
-            ))}
-          </motion.ul>
+            <p className="font-display text-3xl leading-[0.95] text-paper sm:text-5xl">
+              Quem treina aqui, <span className="text-accent">recomenda.</span>
+            </p>
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-silver">
+              Avaliações reais de alunos da {gym.shortName} no Google.
+            </p>
+          </motion.div>
         </div>
+      </div>
+
+      {/* Full-bleed infinite review marquee */}
+      <div className="marquee-mask relative mt-14 flex overflow-hidden">
+        <ul
+          className="animate-marquee flex w-max flex-none"
+          aria-label="Avaliações de alunos"
+        >
+          {track.map((review, i) => (
+            <li
+              key={`${review.name}-${i}`}
+              aria-hidden={i >= reviews.length}
+              className="mr-4 flex h-60 w-[300px] shrink-0 flex-col rounded-2xl border border-line bg-surface p-6 sm:mr-5 sm:w-[340px]"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <span
+                    className="flex size-10 shrink-0 items-center justify-center rounded-full bg-accent/15 font-display text-lg text-accent"
+                    aria-hidden
+                  >
+                    {review.name.charAt(0)}
+                  </span>
+                  <div>
+                    <p className="font-grotesk text-sm font-medium text-paper">
+                      {review.name}
+                    </p>
+                    <p className="font-mono-num text-xs text-silver">
+                      {review.timeAgo}
+                    </p>
+                  </div>
+                </div>
+                <span
+                  className="flex gap-0.5"
+                  aria-label={`${review.rating} de 5 estrelas`}
+                >
+                  {Array.from({ length: review.rating }).map((_, s) => (
+                    <StarIcon key={s} className="size-4 text-accent" />
+                  ))}
+                </span>
+              </div>
+              <p className="mt-4 line-clamp-6 text-pretty text-[0.95rem] leading-relaxed text-paper/85">
+                {review.text}
+              </p>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

@@ -103,6 +103,40 @@ export const reviewNotes = [
   "O ambiente climatizado é citado por frequentadores.",
 ];
 
+/* Real Google reviews from members (all 5 stars). */
+export const reviews = [
+  {
+    name: "Monica Silva",
+    timeAgo: "3 semanas atrás",
+    rating: 5,
+    text: "Academia maravilhosa, ótimos instrutores e professores, instalações dignas tanto para o treino quanto para as necessidades fisiológicas. Minha necessidade era exatamente me sentir motivada a vir para a academia, pois a vida corrida nos deixa um pouco sem disposição. Mas quando o atendimento é bom e temos a atenção dos instrutores, nos sentimos melhores e mais dispostos. Nota mil, Super Série 👏👏",
+  },
+  {
+    name: "Marcos Bastos",
+    timeAgo: "1 mês atrás",
+    rating: 5,
+    text: "Bons equipamentos, ótimos instrutores, infraestrutura agradável e preço acessível. Recomendo!",
+  },
+  {
+    name: "Graciele Oliveira",
+    timeAgo: "1 semana atrás",
+    rating: 5,
+    text: "Ótima academia. Desde que iniciei a malhação, sempre treino lá. Os professores são excelentes, o atendimento é bom e cada treino é específico.",
+  },
+  {
+    name: "Ava Bennoni",
+    timeAgo: "2 semanas atrás",
+    rating: 5,
+    text: "Uma academia familiar, que recebe bem os visitantes. Funcionários muito educados.",
+  },
+  {
+    name: "Marcos",
+    timeAgo: "1 semana atrás",
+    rating: 5,
+    text: "É uma boa academia. Saí de lá porque estava sem dinheiro, mas em breve vou voltar — e com um monte de amigos.",
+  },
+] as const;
+
 /* Structure section bullets */
 export const structurePoints = [
   "Área de musculação completa",
